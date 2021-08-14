@@ -49,8 +49,8 @@ public class xSegmentView: xView {
         self.contentScroll.addGestureRecognizer(tap)
         self.contentScroll.isUserInteractionEnabled = true
         // 指示线
-        self.lineLayer.lineCap = kCALineCapRound
-        self.lineLayer.lineJoin = kCALineJoinRound
+        self.lineLayer.lineCap = .round
+        self.lineLayer.lineJoin = .round
         self.lineLayer.fillColor = UIColor.clear.cgColor
         self.contentScroll.layer.addSublayer(self.lineLayer)
     }
