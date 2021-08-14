@@ -1,0 +1,27 @@
+{
+  "name": "xSegment",
+  "version": "1.0.0",
+  "summary": "A short description of xSegment.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/kaibuleite/xSegment",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "kaibuleite": "177955297@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/kaibuleite/xSegment.git",
+    "tag": "1.0.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "xSegment/Classes/**/*",
+  "dependencies": {
+    "xKit": [
+
+    ]
+  }
+}

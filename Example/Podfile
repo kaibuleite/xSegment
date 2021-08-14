@@ -1,0 +1,18 @@
+# 清华大学源
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+# 私有源
+source 'https://github.com/kaibuleite/xSpecs.git'
+
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'xSegment_Example' do
+  pod 'xSegment', :path => '../'
+
+  target 'xSegment_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

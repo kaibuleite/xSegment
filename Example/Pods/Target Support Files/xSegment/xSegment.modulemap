@@ -1,0 +1,6 @@
+framework module xSegment {
+  umbrella header "xSegment-umbrella.h"
+
+  export *
+  module * { export * }
+}
