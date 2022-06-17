@@ -96,11 +96,13 @@ public class xSegmentView: xView {
     ///   - fillMode: 填充方式
     ///   - fontSize: 字号
     ///   - margin: 边缘距离
+    ///   - fixHeight: 固定高度
     ///   - handler: 回调
     public func reload(titleArray : [String],
                        fillMode : xSegmentConfig.xSegmentItemFillMode,
                        fontSize : CGFloat = 15,
                        margin : CGFloat = 8,
+                       fixHeight : CGFloat = 0,
                        chooseItem handler : @escaping xHandlerChooseItem)
     {
         self.config.fillMode = fillMode
@@ -114,7 +116,12 @@ public class xSegmentView: xView {
                                                       left: margin,
                                                       bottom: 0,
                                                       right: margin))
-            lbl.frame = .init(origin: .zero, size: size)
+            var frame = CGRect.zero
+            frame.size = size
+            if fixHeight > 0 {
+                frame.size.height = fixHeight
+            }
+            lbl.frame = frame
             itemViewArray.append(lbl)
         }
         self.reload(itemViewArray: itemViewArray,
