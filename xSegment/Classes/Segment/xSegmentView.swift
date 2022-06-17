@@ -95,10 +95,12 @@ public class xSegmentView: xView {
     ///   - titleArray: 标题
     ///   - fillMode: 填充方式
     ///   - fontSize: 字号
+    ///   - margin: 边缘距离
     ///   - handler: 回调
     public func reload(titleArray : [String],
                        fillMode : xSegmentConfig.xSegmentItemFillMode,
                        fontSize : CGFloat = 15,
+                       margin : CGFloat = 8,
                        chooseItem handler : @escaping xHandlerChooseItem)
     {
         self.config.fillMode = fillMode
@@ -107,9 +109,12 @@ public class xSegmentView: xView {
             let lbl = UILabel()
             lbl.text = title // 填充
             lbl.textAlignment = .center
-            let size = lbl.xContentSize(margin: .init(top: 0, left: 8, bottom: 0, right: 8))
-            lbl.frame = .init(origin: .zero, size: size)
             lbl.font = .systemFont(ofSize: fontSize)
+            let size = lbl.xContentSize(margin: .init(top: 0,
+                                                      left: margin,
+                                                      bottom: 0,
+                                                      right: margin))
+            lbl.frame = .init(origin: .zero, size: size)
             itemViewArray.append(lbl)
         }
         self.reload(itemViewArray: itemViewArray,
@@ -153,6 +158,7 @@ public class xSegmentView: xView {
         self.lineLayer.strokeColor = cfg.line.color.cgColor
         
         self.setNeedsLayout()
+        self.layoutIfNeeded()
     }
     
     // TODO: Item样式
