@@ -17,14 +17,14 @@ public class xSegmentView: xView {
     // MARK: - Public Property
     /// 配置
     public var config = xSegmentConfig()
-    /// 当前选中的idx
-    public var currentChooseIdx = 0
     /// 排列子视图数组
     public var itemViewArray = [UIView]()
     /// 滚动视图
     public let contentScroll = UIScrollView()
     
     // MARK: - Private Property
+    /// 当前选中的idx
+    var currentChooseIdx = 0
     /// 指示线图层
     let lineLayer = CAShapeLayer.init()
     /// 选择回调
@@ -174,7 +174,6 @@ public class xSegmentView: xView {
     {
         guard idx >= 0 else { return }
         guard idx < self.itemViewArray.count else { return }
-        guard idx != self.currentChooseIdx else { return }
         self.updateItemsStyleDidEndChoose(idx: idx)
         self.chooseHandler?(idx)
     }
@@ -185,7 +184,9 @@ public class xSegmentView: xView {
         self.setNeedsLayout()
         self.layoutIfNeeded()
         // 更新样式
-        self.updateItemStyleToNormal(at: self.currentChooseIdx)
+        if idx != self.currentChooseIdx {
+            self.updateItemStyleToNormal(at: self.currentChooseIdx)
+        }
         self.updateItemStyleToChoose(at: idx)
         self.updateLineLocation(at: idx)
         self.updateScrollContentSide(at: idx)
