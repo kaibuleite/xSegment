@@ -21,14 +21,14 @@ public class xSegmentView: xView {
     public var itemViewArray = [UIView]()
     /// 滚动视图
     public let contentScroll = UIScrollView()
+    /// 当前选中的idx
+    public var currentChooseIdx = 0
     
     // MARK: - Private Property
-    /// 当前选中的idx
-    var currentChooseIdx = 0
     /// 指示线图层
     let lineLayer = CAShapeLayer.init()
     /// 选择回调
-    private var chooseHandler : xHandlerChooseItem?
+    var chooseHandler : xHandlerChooseItem?
     
     // MARK: - 内存释放
     deinit {
