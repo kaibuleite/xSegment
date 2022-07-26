@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import xKit
+import xExtension
 
-public class xSegmentView: xView {
+public class xSegmentView: UIView {
 
     // MARK: - Handler
     /// 选中回调
@@ -36,24 +36,25 @@ public class xSegmentView: xView {
     }
 
     // MARK: - Public Override Func
-    public override func viewDidLoad() {
-        super.viewDidLoad()
+    public override func awakeFromNib() {
+        super.awakeFromNib()
         // 基本配置
         self.backgroundColor = .white
         // 滚动容器
-        self.addSubview(self.contentScroll)
+        self.contentScroll.isUserInteractionEnabled = true
         self.contentScroll.showsVerticalScrollIndicator = false
         self.contentScroll.showsHorizontalScrollIndicator = false
+        self.addSubview(self.contentScroll)
         // 添加响应手势
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapContentScroll(_:)))
         self.contentScroll.addGestureRecognizer(tap)
-        self.contentScroll.isUserInteractionEnabled = true
         // 指示线
         self.lineLayer.lineCap = .round
         self.lineLayer.lineJoin = .round
         self.lineLayer.fillColor = UIColor.clear.cgColor
         self.contentScroll.layer.addSublayer(self.lineLayer)
     }
+    
     public override func layoutSubviews() {
         super.layoutSubviews()
         guard self.itemViewArray.count > 0 else { return }
