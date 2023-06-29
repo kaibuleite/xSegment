@@ -8,7 +8,7 @@
 import UIKit
 import xExtension
 
-public class xSegmentView: UIView {
+open class xSegmentView: UIView {
 
     // MARK: - Handler
     /// 选中回调
@@ -34,7 +34,7 @@ public class xSegmentView: UIView {
     }
 
     // MARK: - Public Override Func
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         // 基本配置
         self.backgroundColor = .white
@@ -49,7 +49,7 @@ public class xSegmentView: UIView {
         self.contentScroll.addSubview(self.chooseItemLine)
     }
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         guard self.itemArray.count > 0 else { return }
         // 重新计算位置
