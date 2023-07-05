@@ -25,6 +25,11 @@ public class xSegmentConfig: NSObject {
         public var normal = UIColor.black
         /// 选中
         public var choose = UIColor.red
+        
+        public init(normal: UIColor = UIColor.black, choose: UIColor = UIColor.red) {
+            self.normal = normal
+            self.choose = choose
+        }
     }
     
     /// 边框数据结构

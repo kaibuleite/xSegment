@@ -51,7 +51,7 @@ open class xSegmentView: UIView {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        guard self.itemArray.count > 0 else { return }
+        self.contentScroll.frame = self.bounds
         // 重新计算位置
         let cfg = self.config
         var itemFrame = CGRect.zero
@@ -76,6 +76,9 @@ open class xSegmentView: UIView {
             if itemFrame.size.height == 0 {
                 itemFrame.size.height = cfg.itemHeight
             }
+            if itemFrame.size.height > cfg.itemHeight {
+                itemFrame.size.height = cfg.itemHeight
+            }
             itemFrame.origin.y = (contentH - itemFrame.height) / 2
             item.frame = itemFrame
             itemFrame.origin.x += (cfg.spacing + itemFrame.width)
@@ -83,7 +86,6 @@ open class xSegmentView: UIView {
         // 更新frame
         let totalWidth = itemFrame.origin.x - cfg.spacing
         let contentSize = CGSize.init(width: totalWidth, height: 0)
-        self.contentScroll.frame = self.bounds
         self.contentScroll.contentSize = contentSize
         self.contentScroll.isScrollEnabled = totalWidth > self.bounds.width
     } 

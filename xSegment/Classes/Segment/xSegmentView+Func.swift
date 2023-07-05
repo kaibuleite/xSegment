@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import xExtension
 
 extension xSegmentView {
     
@@ -25,5 +26,31 @@ extension xSegmentView {
         self.updateItemStyleToChoose(at: idx)
         self.chooseHandler?(idx) 
     }  
+    
+    // MARK: - 设置Item样式
+    /// 设置Item新内容提示
+    public func setSegmentItem(idx : Int,
+                               hasNew : Bool)
+    {
+        guard let view = self.itemArray.xObject(at: idx) else { return }
+        guard let item = view as? xSegmentItem else {
+            print("⚠️ 要编辑的 Item 不是继承 xSegmentItem 类")
+            return
+        }
+        item.newFlag?.isHidden = !hasNew
+        item.badgeLbl?.isHidden = true
+    }
+    /// 设置Item新内容提示
+    public func setSegmentItem(idx : Int, badge value : Int)
+    {
+        guard let view = self.itemArray.xObject(at: idx) else { return }
+        guard let item = view as? xSegmentItem else {
+            print("⚠️ 要编辑的 Item 不是继承 xSegmentItem 类")
+            return
+        }
+        item.newFlag?.isHidden = true
+        item.badgeLbl?.text = "\(value) "
+        item.badgeLbl?.isHidden = (value <= 0)
+    }
     
 }

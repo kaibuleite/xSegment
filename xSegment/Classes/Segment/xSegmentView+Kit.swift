@@ -25,8 +25,8 @@ extension xSegmentView {
         if let obj = item as? UILabel {
             obj.textColor = cfg.titleColor.normal
         } else
-        if let obj = item as? xSegmentItem {
-            obj.updateNormalStyle()
+        if let obj = item as? xSegmentItem { 
+            obj.updateNormalStyle(cfg)
         }
     }
     /// 设置选中样式
@@ -43,7 +43,7 @@ extension xSegmentView {
             obj.textColor = cfg.titleColor.choose
         } else
         if let obj = item as? xSegmentItem {
-            obj.updateChooseStyle()
+            obj.updateChooseStyle(cfg)
         }
         self.currentChooseIdx = idx
         self.updateLineScroll(to: idx, animated: true)

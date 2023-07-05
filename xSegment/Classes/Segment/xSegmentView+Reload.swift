@@ -24,24 +24,22 @@ extension xSegmentView {
         // 创建新控件
         let cfg = self.config
         let font = UIFont.systemFont(ofSize: cfg.fontSize)
-        var list = [UIView]()
+        var list = [xSegmentItem]()
         for (i, title) in dataArray.enumerated() {
-            let btn = UIButton(type: .system)
-            btn.tag = i
-            btn.contentHorizontalAlignment = .center
-            btn.setTitle(title, for: .normal)
+            let item = xSegmentItem.loadXib()
+            item.tag = i
+            item.titleLbl?.text = title
             // 计算宽高
-            if let lbl = btn.titleLabel {
-                lbl.font = font
-                let size = lbl.xContentSize(margin: cfg.itemMarginEdgeInsets)
-                var frame = CGRect.zero
-                frame.size = size
-                if cfg.itemHeight > 0 {
-                    frame.size.height = cfg.itemHeight
-                }
-                btn.frame = frame
+            let lbl = item.titleLbl!
+            lbl.font = font
+            let size = lbl.xContentSize(margin: cfg.itemMarginEdgeInsets)
+            var frame = CGRect.zero
+            frame.size = size
+            if cfg.itemHeight > 0 {
+                frame.size.height = cfg.itemHeight
             }
-            list.append(btn)
+            item.frame = frame
+            list.append(item)
         }
         self.reload(itemViewArray: list)
     }
@@ -73,30 +71,22 @@ extension xSegmentView {
             item.backgroundColor = cfg.backgroundColor.normal
             // TODO: 按钮
             if let obj = item as? UIButton {
-                obj.setTitleColor(cfg.titleColor.normal, for: .normal)
-                // 添加响应事件
-                obj.xAddClick {
-                    [unowned self] (sender) in
-                    let idx = sender.tag
-                    self.choose(idx: idx)
-                }
+                obj.setTitleColor(cfg.titleColor.normal, for: .normal) 
             } else
             // TODO: 标签
             if let obj = item as? UILabel {
                 obj.textColor = cfg.titleColor.normal
-                // 添加响应事件
-                obj.isUserInteractionEnabled = true
-                let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapItem(_:)))
-                obj.addGestureRecognizer(tap)
             } else
             // TODO: 自定义视图
             if let obj = item as? xSegmentItem {
-                obj.updateNormalStyle()
-                // 添加响应事件
-                obj.isUserInteractionEnabled = true
-                let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapItem(_:)))
-                obj.addGestureRecognizer(tap)
+                obj.updateNormalStyle(cfg)
+            } else {
+                print("❗️ 建议继承 xSegmentItem 类")
             }
+            // 添加响应事件
+            item.isUserInteractionEnabled = true
+            let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapItem(_:)))
+            item.addGestureRecognizer(tap)
             self.contentScroll.addSubview(item)
         }
         self.chooseItemLine.frame = .zero
