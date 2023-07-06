@@ -32,25 +32,32 @@ extension xSegmentView {
     public func setSegmentItem(idx : Int,
                                hasNew : Bool)
     {
-        guard let view = self.itemArray.xObject(at: idx) else { return }
-        guard let item = view as? xSegmentItem else {
-            print("⚠️ 要编辑的 Item 不是继承 xSegmentItem 类")
-            return
-        }
+        guard let item = self.getSegmentItem(at: idx) else { return }
         item.newFlag?.isHidden = !hasNew
         item.badgeLbl?.isHidden = true
     }
-    /// 设置Item新内容提示
+    /// 设置Item角标
     public func setSegmentItem(idx : Int, badge value : Int)
     {
-        guard let view = self.itemArray.xObject(at: idx) else { return }
-        guard let item = view as? xSegmentItem else {
-            print("⚠️ 要编辑的 Item 不是继承 xSegmentItem 类")
-            return
-        }
+        guard let item = self.getSegmentItem(at: idx) else { return }
         item.newFlag?.isHidden = true
         item.badgeLbl?.text = "\(value) "
         item.badgeLbl?.isHidden = (value <= 0)
+    }
+    /// 设置Item标题行数
+    public func setSegmentItem(idx : Int, titleLines : Int)
+    {
+        guard let item = self.getSegmentItem(at: idx) else { return }
+        item.titleLbl?.numberOfLines = titleLines
+    }
+    func getSegmentItem(at idx : Int) -> xSegmentItem?
+    {
+        guard let view = self.itemArray.xObject(at: idx) else { return nil }
+        guard let item = view as? xSegmentItem else {
+            print("⚠️ 要编辑的 Item 不是继承 xSegmentItem 类")
+            return nil
+        }
+        return item
     }
     
 }
