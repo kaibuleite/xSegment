@@ -44,6 +44,13 @@ extension xSegmentView {
         item.badgeLbl?.text = "\(value) "
         item.badgeLbl?.isHidden = (value <= 0)
     }
+    /// 设置Item标题
+    public func setSegmentItem(idx : Int,
+                               title : String)
+    {
+        guard let item = self.getSegmentItem(at: idx) else { return }
+        item.titleLbl?.text = title
+    }
     /// 设置Item标题行数
     public func setSegmentItem(idx : Int, titleLines : Int)
     {
