@@ -57,6 +57,14 @@ extension xSegmentView {
         guard let item = self.getSegmentItem(at: idx) else { return }
         item.titleLbl?.numberOfLines = titleLines
     }
+    /// 设置所有Item标题行数
+    public func setAllSegmentItem(titleLines : Int)
+    {
+        for view in self.itemArray {
+            guard let item = view as? xSegmentItem else { continue }
+            item.titleLbl?.numberOfLines = titleLines
+        }
+    }
     func getSegmentItem(at idx : Int) -> xSegmentItem?
     {
         guard let view = self.itemArray.xObject(at: idx) else { return nil }
