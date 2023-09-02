@@ -32,9 +32,13 @@ extension xSegmentView {
             // 计算宽高
             let lbl = item.titleLbl!
             lbl.font = font
+            lbl.numberOfLines = cfg.titleLines
             let size = lbl.xContentSize(margin: cfg.itemMarginEdgeInsets)
             var frame = CGRect.zero
             frame.size = size
+            if cfg.itemWidth > 0 {
+                frame.size.height = cfg.itemWidth
+            }
             if cfg.itemHeight > 0 {
                 frame.size.height = cfg.itemHeight
             }

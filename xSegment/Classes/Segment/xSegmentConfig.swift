@@ -59,18 +59,27 @@ public class xSegmentConfig: NSObject {
     public var fillMode = xSegmentItemFillMode.auto
     /// 字号(默认15.0)
     public var fontSize = CGFloat(15)
+    /// 间距
+    public var spacing = CGFloat.zero
+    
+    /// item指定高度(默认44)
+    public var itemHeight = CGFloat(44)
+    /// item指定宽度(默认0)
+    public var itemWidth = CGFloat(0)
+    /// item边距(默认8，自适应计算宽度后留空)
+    public var itemMarginEdgeInsets = UIEdgeInsets.init(top: 0, left: 8, bottom: 0, right: 8)
+    
+    /// 行数
+    public var titleLines = 1
     /// 标题颜色
     public var titleColor = xSegmentItemColor(normal: .lightGray, choose: .darkText)
     /// 背景颜色
     public var backgroundColor = xSegmentItemColor(normal: .clear, choose: .clear)
+    
     /// 边框样式
     public var border = xSegmentItemBorder()
+    
     /// 指示线样式
     public var line = xSegmentLine()
-    /// 间距
-    public var spacing = CGFloat.zero
-    /// item指定高度(默认44)
-    public var itemHeight = CGFloat(44)
-    /// item边距(默认8，自适应计算宽度后留空)
-    public var itemMarginEdgeInsets = UIEdgeInsets.init(top: 0, left: 8, bottom: 0, right: 8)
+    
 }

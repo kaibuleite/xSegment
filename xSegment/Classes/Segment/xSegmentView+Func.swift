@@ -60,6 +60,7 @@ extension xSegmentView {
     /// 设置所有Item标题行数
     public func setAllSegmentItem(titleLines : Int)
     {
+        self.config.titleLines = titleLines
         for view in self.itemArray {
             guard let item = view as? xSegmentItem else { continue }
             item.titleLbl?.numberOfLines = titleLines
