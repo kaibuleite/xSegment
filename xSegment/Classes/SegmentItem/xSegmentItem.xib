@@ -51,9 +51,7 @@
                 <constraint firstItem="8X4-oE-OHd" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4pt-6V-ZMf"/>
                 <constraint firstItem="Wgu-R0-mQ2" firstAttribute="leading" secondItem="8X4-oE-OHd" secondAttribute="trailing" priority="500" constant="4" id="9Lb-QZ-7hg"/>
                 <constraint firstItem="uQx-8h-A1a" firstAttribute="leading" secondItem="8X4-oE-OHd" secondAttribute="trailing" priority="500" constant="4" id="EPb-Sx-n4z"/>
-                <constraint firstItem="8X4-oE-OHd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" id="VmA-2O-ckw"/>
                 <constraint firstItem="8X4-oE-OHd" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="c32-LG-LNf"/>
-                <constraint firstItem="8X4-oE-OHd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" id="gbB-GL-PI4"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Wgu-R0-mQ2" secondAttribute="trailing" id="h4W-Kx-CQ8"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uQx-8h-A1a" secondAttribute="trailing" id="kSO-YO-c1d"/>
                 <constraint firstItem="Wgu-R0-mQ2" firstAttribute="top" secondItem="8X4-oE-OHd" secondAttribute="top" id="rqZ-TT-tYG"/>

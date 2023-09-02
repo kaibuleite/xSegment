@@ -28,11 +28,13 @@ extension xSegmentView {
         for (i, title) in dataArray.enumerated() {
             let item = xSegmentItem.loadXib()
             item.tag = i
-            item.titleLbl?.text = title
             // 计算宽高
             let lbl = item.titleLbl!
+            lbl.text = title
             lbl.font = font
             lbl.numberOfLines = cfg.titleLines
+            item.setNeedsLayout()
+            item.layoutIfNeeded()
             let size = lbl.xContentSize(margin: cfg.itemMarginEdgeInsets)
             var frame = CGRect.zero
             frame.size = size
@@ -75,7 +77,7 @@ extension xSegmentView {
             item.backgroundColor = cfg.backgroundColor.normal
             // TODO: 按钮
             if let obj = item as? UIButton {
-                obj.setTitleColor(cfg.titleColor.normal, for: .normal) 
+                obj.setTitleColor(cfg.titleColor.normal, for: .normal)
             } else
             // TODO: 标签
             if let obj = item as? UILabel {
