@@ -1,8 +1,8 @@
 PODS:
   - xDefine (1.0.6)
-  - xExtension (1.1.6):
+  - xExtension (1.1.7):
     - xDefine
-  - xSegment (1.1.0):
+  - xSegment (1.1.6):
     - xExtension
 
 DEPENDENCIES:
@@ -19,8 +19,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   xDefine: 74915e20fdc2bb56dc50e981684d532baa7200ab
-  xExtension: ad23e756488b0b352b253626375ec6a77459538b
-  xSegment: 99b01334249a65019b0ca4daad7c47936acfaaf9
+  xExtension: 5ef28de4de112ec5a7ee1cce29480ea665f46b05
+  xSegment: f0f3e5c299afd1ba4f4ccedb91acb43ab53e1d98
 
 PODFILE CHECKSUM: b21fd8130d6cb03ac5e87552fae0855bd34cc32a
 

@@ -1,6 +1,6 @@
 {
   "name": "xSegment",
-  "version": "1.1.0",
+  "version": "1.1.6",
   "summary": "A short description of xSegment.",
   "swift_versions": "5",
   "description": "TODO: Add long description of the pod here.",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/kaibuleite/xSegment.git",
-    "tag": "1.1.0"
+    "tag": "1.1.6"
   },
   "platforms": {
     "ios": "12.0"

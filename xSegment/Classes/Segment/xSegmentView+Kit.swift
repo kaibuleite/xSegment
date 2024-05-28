@@ -61,8 +61,11 @@ extension xSegmentView {
         let itemX = item.frame.origin.x
         let itemW = item.frame.width
         let itemH = item.frame.height
-        let lineW = itemW * cfg.line.widthOfItemPercent
         let lineH = cfg.line.height
+        var lineW = itemW * cfg.line.widthOfItemPercent
+        if cfg.line.width > 0 {
+            lineW = cfg.line.width // 固定宽度
+        }
         // 起始位置
         var startFrame = self.chooseItemLine.frame
         startFrame.size.width = lineW
