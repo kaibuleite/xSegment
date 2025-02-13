@@ -44,11 +44,15 @@ class ViewController: UIViewController {
 //                     "武汉", "重庆", "乌鲁木齐", "天津",
 //                     "晋江", "华盛顿", "伦敦", "巴黎", "长安"
                     ]
-        self.segment1.config.fillMode = .equally
+        self.segment1.config.updateBasic(isAutoWidth: false,    // 等宽
+                                         spacing: 10)
         self.segment1.reload(dataArray: list1)
         self.segment1.updateItemStyleToChoose(at: 1)
         
-        let arr2 = ["🍏", "🍎", "🍐", "🍊", "🍋", "🍌", "🍉", "🍇", "🍓", "🍈", "🍒", "🍑", "🍍", "🥝", "🥑", "🍅", "🍆", "🥒", "🥕", "🌶", "🥔", "🌽", "🍠", "🥜", "🍯", "🥐", "🍞", "🥖", "🧀", "🥚", "🥓", "🥞", "🍗", "🍖"]
+        let arr2 = ["🍏", "🍎", "🍐", "🍊", "🍋", "🍌", "🍉", "🍇", "🍓",
+                    "🍈", "🍒", "🍑", "🍍", "🥝", "🥑", "🍅", "🍆", "🥒",
+                    "🥕", "🌶", "🥔", "🌽", "🍠", "🥜", "🍯", "🥐", "🍞",
+                    "🥖", "🧀", "🥚", "🥓", "🥞", "🍗", "🍖"]
         var list2 = [UILabel]()
         for str in arr2 {
             let lbl = UILabel(frame: .init(origin: .zero, size: .init(width: 40, height: 40)))
@@ -56,7 +60,8 @@ class ViewController: UIViewController {
             lbl.textAlignment = .center
             list2.append(lbl)
         }
-        self.segment2.config.fillMode = .auto
+        self.segment2.config.updateBasic(isAutoWidth: true, // 自动计算宽度
+                                         spacing: 15)
         self.segment2.reload(itemViewArray: list2)
         self.segment2.updateItemStyleToChoose(at: 2)
         
@@ -66,7 +71,8 @@ class ViewController: UIViewController {
             btn.setTitle("\(i)", for: .normal)
             list3.append(btn)
         }
-        self.segment3.config.fillMode = .auto
+        self.segment3.config.updateBasic(isAutoWidth: true, // 自动计算宽度
+                                         spacing: 20)
         self.segment3.reload(itemViewArray: list3)
         self.segment3.updateItemStyleToChoose(at: 3)
     }
@@ -88,22 +94,18 @@ class ViewController: UIViewController {
         }
         
         let config = segment.config
-        let random = (arc4random() % 2 == 0)
-        config.fontSize = 15
-        config.spacing = 10
-        config.itemHeight = 40
-        config.titleColor.normal = .xNewRandom()
-        config.titleColor.choose = .xNewRandom()
-        config.backgroundColor.normal = .xNewRandom(alpha: 0.5)
-        config.backgroundColor.choose = .xNewRandom(alpha: 0.5)
-        config.border.color.normal = .xNewRandom()
-        config.border.color.choose = .xNewRandom()
-        config.border.cornerRadius = 4
-        config.border.width = (random ? 0 : 1)
-        config.line.color = .xNewRandom()
-        config.line.height = 1 + CGFloat.xNewRandom(max: 4)
-        config.line.marginBottom = 1 + CGFloat.xNewRandom(max: 2)
-        config.line.widthOfItemPercent = (5 +  CGFloat.xNewRandom(max: 5)) / 10
+        config.updateFont(normal: .systemFont(ofSize: 15),
+                          choose: .systemFont(ofSize: 16))
+        config.updateItem(height: 40, margin: .zero)
+        config.updateColor(title: .xNewRandom(),
+                           background: .xNewRandom())
+        config.updateBorder(color: .xNewRandom(),
+                            width: ((arc4random() % 2 == 0) ? 0 : 1),
+                            radius: 4)
+        config.updateIndicatorLine(color: .xNewRandom(),
+                                   height:  1 + CGFloat.xNewRandom(max: 4),
+                                   widthRatio: (5 +  CGFloat.xNewRandom(max: 5)) / 10,
+                                   bottomSpacing: 1 + CGFloat.xNewRandom(max: 2))
     }
 
 }

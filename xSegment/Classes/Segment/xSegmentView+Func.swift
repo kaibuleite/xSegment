@@ -20,12 +20,9 @@ extension xSegmentView {
     /// 选中
     public func choose(idx : Int)
     {
-        if idx != self.currentChooseIdx {
-            self.updateItemStyleToNormal(at: self.currentChooseIdx)
-        }
         self.updateItemStyleToChoose(at: idx)
-        self.chooseHandler?(idx) 
-    }  
+        self.chooseHandler?(idx)
+    }
     
     // MARK: - 设置Item样式
     /// 设置Item新内容提示

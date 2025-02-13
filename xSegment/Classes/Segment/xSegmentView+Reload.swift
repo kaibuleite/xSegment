@@ -23,32 +23,31 @@ extension xSegmentView {
         }
         // 创建新控件
         let cfg = self.config
-        let font = UIFont.systemFont(ofSize: cfg.fontSize)
         var list = [xSegmentItem]()
-        for (i, title) in dataArray.enumerated() {
+        
+        for title in dataArray {
             let item = xSegmentItem.loadXib()
-            item.tag = i
-            // 计算宽高
             let lbl = item.titleLbl!
-            lbl.text = title
-            lbl.font = font
             lbl.numberOfLines = cfg.titleLines
-            item.setNeedsLayout()
-            item.layoutIfNeeded()
-            let size = lbl.xContentSize(margin: cfg.itemMarginEdgeInsets)
+            lbl.font = cfg.font.normal
+            lbl.text = title
+            // 计算内容宽度
             var frame = CGRect.zero
-            frame.size = size
-            if cfg.itemWidth > 0 {
-                frame.size.height = cfg.itemWidth
-            }
-            if cfg.itemHeight > 0 {
-                frame.size.height = cfg.itemHeight
-            }
+            var contentWidth = title.xContentWidth(for: cfg.font.normal,
+                                                   height: cfg.itemHeight)
+            contentWidth += cfg.itemMargin.left
+            contentWidth += cfg.itemMargin.right
+            frame.size.width = contentWidth
+            // 是否固定宽高
+            if cfg.itemWidth > 0 { frame.size.width = cfg.itemWidth }
+            if cfg.itemHeight > 0 { frame.size.height = cfg.itemHeight }
+            
             item.frame = frame
             list.append(item)
         }
         self.reload(itemViewArray: list)
     }
+    
     /// 加载自定义组件数据(view的frame自己设)
     /// - Parameters:
     ///   - itemViewArray: 视图列表
@@ -58,13 +57,12 @@ extension xSegmentView {
             print("⚠️ Segment没有数据")
             return
         }
-        // 清空旧规格控件
-        for item in self.itemArray {
-            item.removeFromSuperview()
-        }
+        // 移除旧控件
+        self.contentScroll.xRemoveAllSubViews()
         self.itemArray.removeAll()
         // 保存数据
         self.itemArray = itemViewArray
+        self.itemFrameArray.removeAll()
         // 排列控件
         let cfg = self.config
         for (i, item) in itemViewArray.enumerated() {
@@ -73,34 +71,25 @@ extension xSegmentView {
             item.layer.masksToBounds = true
             item.layer.cornerRadius = cfg.border.cornerRadius
             item.layer.borderWidth = cfg.border.width
-            item.layer.borderColor = cfg.border.color.normal.cgColor
-            item.backgroundColor = cfg.backgroundColor.normal
-            // TODO: 按钮
-            if let obj = item as? UIButton {
-                obj.setTitleColor(cfg.titleColor.normal, for: .normal)
-            } else
-            // TODO: 标签
-            if let obj = item as? UILabel {
-                obj.textColor = cfg.titleColor.normal
-            } else
-            // TODO: 自定义视图
-            if let obj = item as? xSegmentItem {
-                obj.updateNormalStyle(cfg)
-            } else {
-                print("❗️ 建议继承 xSegmentItem 类")
-            }
+            self.updateItemStyleToNormal(at: i)
+            // 保存Frame
+            self.itemFrameArray.append(item.frame)
+            self.contentScroll.addSubview(item)
             // 添加响应事件
-            item.isUserInteractionEnabled = true
             let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapItem(_:)))
             item.addGestureRecognizer(tap)
-            self.contentScroll.addSubview(item)
+            item.isUserInteractionEnabled = true
         }
+        // 设置指示线
         self.chooseItemLine.frame = .zero
         self.chooseItemLine.backgroundColor = cfg.line.color
-        self.contentScroll.bringSubviewToFront(self.chooseItemLine)
+        self.chooseItemLine.layer.cornerRadius = cfg.line.height / 2
+        self.contentScroll.addSubview(self.chooseItemLine)
         // 更新布局
         self.setNeedsLayout()
         self.layoutIfNeeded()
+        // 默认选中第一个数据
+        self.updateItemStyleToChoose(at: 0)
     }
     
     // MARK: - 点击手势

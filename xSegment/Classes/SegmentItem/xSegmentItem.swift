@@ -44,11 +44,13 @@ open class xSegmentItem: UIView {
     open func updateNormalStyle(_ config : xSegmentConfig)
     {
         self.titleLbl?.textColor = config.titleColor.normal
+        self.titleLbl?.font = config.font.normal
     }
     /// 选中
     open func updateChooseStyle(_ config : xSegmentConfig)
     {
         self.titleLbl?.textColor = config.titleColor.choose
+        self.titleLbl?.font = config.font.choose
     }
     
 }
