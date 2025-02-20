@@ -60,9 +60,9 @@ extension xSegmentView {
         // 移除旧控件
         self.contentScroll.xRemoveAllSubViews()
         self.itemArray.removeAll()
+        self.itemFrameArray.removeAll()
         // 保存数据
         self.itemArray = itemViewArray
-        self.itemFrameArray.removeAll()
         // 排列控件
         let cfg = self.config
         for (i, item) in itemViewArray.enumerated() {
